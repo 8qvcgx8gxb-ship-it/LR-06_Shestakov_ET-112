@@ -4,11 +4,14 @@
 //
 //  Created by Alexander on 3/16/26.
 //
-// Задача 1 Вариант 30
-/*
+
 #include <iostream>
+#include <string>
+#include <sstream>
 using namespace std;
 
+// Задача 1 Вариант 30
+/*
 int main() {
     int n1 = 0, n2 = 0, nall = 0;
     
@@ -78,3 +81,43 @@ int main() {
 }
 */
 
+// Задача 2
+/*
+int main() {
+    string line;
+    cout << "Введите строку: ";
+    getline(cin, line);
+    istringstream iss(line);
+    string word;
+    string shortestWord = "";
+    int count = 0;
+    float minwordlen = 0;
+
+    while (iss >> word) {
+        if (shortestWord.empty() || word.length() < shortestWord.length()) {
+            shortestWord = word;
+        }
+    }
+
+    if (shortestWord.empty()) {
+        cout << "Строка не содержит слов." << endl;
+        return 0;
+    }
+
+    iss.clear();
+    iss.str(line);
+
+    minwordlen = shortestWord.length();
+    
+    while (iss >> word) {
+        if (word.length() == minwordlen) {
+            count++;
+        }
+    }
+
+    cout << "Самое короткое слово: \"" << shortestWord << "\"" << endl;
+    cout << "Количество слов, равных по длине самому короткому: " << count << endl;
+
+    return 0;
+}
+*/
