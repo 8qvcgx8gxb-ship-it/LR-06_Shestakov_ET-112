@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <string>
-#include <sstream>
 using namespace std;
 
 // Задача 1 Вариант 30
@@ -87,15 +86,20 @@ int main() {
     string line;
     cout << "Введите строку: ";
     getline(cin, line);
-    istringstream iss(line);
-    string word;
+    string word = "";
     string shortestWord = "";
     int count = 0;
-    float minwordlen = 0;
-
-    while (iss >> word) {
-        if (shortestWord.empty() || word.length() < shortestWord.length()) {
-            shortestWord = word;
+    line += ' ';
+    
+    for (int i = 0; i < line.length(); i++) {
+        if (line[i] != ' ' and line[i] != ',' and line[i] != '.' and line[i] != '!' and line[i] != '?' and line[i] != '&') {
+            word += line[i];
+        } else {
+            if (!word.empty()) {
+                if (shortestWord.empty() || word.length() < shortestWord.length())
+                    shortestWord = word;
+                word = "";
+            }
         }
     }
 
@@ -103,19 +107,21 @@ int main() {
         cout << "Строка не содержит слов." << endl;
         return 0;
     }
-
-    iss.clear();
-    iss.str(line);
-
-    minwordlen = shortestWord.length();
     
-    while (iss >> word) {
-        if (word.length() == minwordlen) {
-            count++;
+    word = "";
+    for (int i = 0; i < line.length(); i++) {
+        if (line[i] != ' ' and line[i] != ',' and line[i] != '.' and line[i] != '!' and line[i] != '?' and line[i] != '&') {
+            word += line[i];
+        } else {
+            if (!word.empty()) {
+                if (word.length() == shortestWord.length())
+                    count++;
+                word = "";
+            }
         }
     }
 
-    cout << "Самое короткое слово: \"" << shortestWord << "\"" << endl;
+    cout << "Самое короткое слово: " << shortestWord << endl;
     cout << "Количество слов, равных по длине самому короткому: " << count << endl;
 
     return 0;
