@@ -4,7 +4,8 @@
 //
 //  Created by Alexander on 3/16/26.
 //
-
+// Задача 1 Вариант 30
+/*
 #include <iostream>
 using namespace std;
 
@@ -75,3 +76,5 @@ int main() {
     
     return 0;
 }
+*/
+
